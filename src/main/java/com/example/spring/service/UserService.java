@@ -30,6 +30,10 @@ public class UserService {
     return userRepository.findUsersByName(name);
   }
 
+  public List<UserDAO> getUsers() {
+    return userRepository.findAll();
+  }
+
   public UserDAO createUser(User user) {
 
     UserDAO userDAO = new UserDAO();

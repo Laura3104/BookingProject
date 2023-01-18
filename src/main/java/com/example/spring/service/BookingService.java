@@ -52,6 +52,13 @@ public class BookingService implements BookingFacade {
   }
 
   @Override
+  public List<Event> getEvents() {
+    return eventService.getEvents().stream()
+        .map(eventDAO -> mapper.map(eventDAO, Event.class))
+        .collect(Collectors.toList());
+  }
+
+  @Override
   public Event createEvent(Event event) {
     EventDAO eventToCreate = eventService.createEvent(event);
     log.info("Creating Event:" + eventToCreate);
@@ -86,6 +93,13 @@ public class BookingService implements BookingFacade {
   @Override
   public List<User> getUsersByName(String name) {
     return userService.getUsersByName(name).stream()
+        .map(userDAO -> mapper.map(userDAO, User.class))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<User> getUsers() {
+    return userService.getUsers().stream()
         .map(userDAO -> mapper.map(userDAO, User.class))
         .collect(Collectors.toList());
   }
@@ -127,6 +141,13 @@ public class BookingService implements BookingFacade {
   public List<Ticket> getBookedTickets(Event event) {
     return ticketService.getBookedTickets(mapper.map(event, EventDAO.class)).stream()
         .map(ticketDAO -> mapper.map(ticketDAO, Ticket.class))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<Ticket> getBookedTicketsByUserId(String userId) {
+    return ticketService.getBookedTicketsByUserId(mapper.map(userId, Long.class)).stream()
+        .map(ticket -> mapper.map(ticket, Ticket.class))
         .collect(Collectors.toList());
   }
 

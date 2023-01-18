@@ -36,6 +36,12 @@ public interface BookingFacade {
   List<Event> getEventsForDay(Date day);
 
   /**
+   * Get list of events for specified day. In case nothing was found, empty list is returned.
+   *
+   * @return List of events.
+   */
+  List<Event> getEvents();
+  /**
    * Creates new event. Event id should be auto-generated.
    *
    * @param event Event data.
@@ -81,6 +87,13 @@ public interface BookingFacade {
    * @return List of users.
    */
   List<User> getUsersByName(String name);
+
+  /**
+   * Get list of users. In case nothing was found, empty list is returned.
+   *
+   * @return List of users.
+   */
+  List<User> getUsers();
 
   /**
    * Creates new user. User id should be auto-generated.
@@ -135,6 +148,15 @@ public interface BookingFacade {
    * @return List of Ticket objects.
    */
   List<Ticket> getBookedTickets(Event event);
+
+  /**
+   * Get all booked tickets for specified user. Tickets should be sorted by event date in descending
+   * order.
+   *
+   * @param userId String
+   * @return List of Ticket objects.
+   */
+  List<Ticket> getBookedTicketsByUserId(String userId);
 
   /**
    * Cancel ticket with a specified id.

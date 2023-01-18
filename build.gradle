@@ -42,6 +42,7 @@ dependencies {
 	testImplementation ('org.springframework.boot:spring-boot-starter-test',
 			'org.junit.vintage:junit-vintage-engine:5.9.0')
 	implementation 'org.modelmapper:modelmapper:2.3.3'
+	implementation group: 'org.xhtmlrenderer', name: 'flying-saucer-pdf-itext5', version: '9.0.1'
 }
 
 spotless {

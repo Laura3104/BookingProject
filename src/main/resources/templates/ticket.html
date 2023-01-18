@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Events</title>
+</head>
+
+<body>
+<table border="1" style="width: 100%">
+    <colgroup>
+        <col style="width: 20%"/>
+        <col style="width: 40%"/>
+        <col style="width: 40%"/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>TICKET ID</th>
+        <th>USER NAME</th>
+        <th>EVENT</th>
+        <th>CATEGORY</th>
+        <th>PLACE</th>
+    </tr>
+    </thead>
+    <tr th:each="ticket : ${tickets}">
+        <td th:text="${ticket.id}"></td>
+        <td th:text="${ticket.user.name}"></td>
+        <td th:text="${ticket.event.title}"></td>
+        <td th:text="${ticket.category}"></td>
+        <td th:text="${ticket.place}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>

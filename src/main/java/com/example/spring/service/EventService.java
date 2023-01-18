@@ -32,6 +32,10 @@ public class EventService {
     return eventRepository.findEventsByDate(day);
   }
 
+  public List<EventDAO> getEvents() {
+    return eventRepository.findAll();
+  }
+
   public EventDAO createEvent(Event event) {
 
     EventDAO eventToSave = new EventDAO();
