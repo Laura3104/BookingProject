@@ -1,7 +1,5 @@
 package com.example.spring.model.dto;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,9 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Event {
+public class UserAccount {
   private Long id;
-  private String title;
-  private Date date;
-  private Integer ticketPrice;
+  private Integer balance;
 }

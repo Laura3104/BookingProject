@@ -1,4 +1,4 @@
-package com.example.spring.controller;
+package com.example.spring.controller.html;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,19 +10,19 @@ import com.example.spring.exception.HtmlExceptionHandler;
 import com.example.spring.service.BookingService;
 
 @Controller
-public class UserController extends HtmlExceptionHandler {
+public class EventController extends HtmlExceptionHandler {
 
   @Autowired private BookingService bookingService;
 
-  @GetMapping("/users/{id}")
-  public String getUsersById(@PathVariable("id") long id, Model model) {
-    model.addAttribute("users", this.bookingService.getUserById(id));
-    return "user";
+  @GetMapping("/events/{id}")
+  public String getEventsById(@PathVariable("id") long id, Model model) {
+    model.addAttribute("events", this.bookingService.getEventById(id));
+    return "event";
   }
 
-  @GetMapping("/users")
-  public String getUsers(Model model) {
-    model.addAttribute("users", this.bookingService.getUsers());
-    return "user";
+  @GetMapping("/events")
+  public String getEvents(Model model) {
+    model.addAttribute("events", this.bookingService.getEvents());
+    return "event";
   }
 }

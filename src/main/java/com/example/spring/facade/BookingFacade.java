@@ -7,6 +7,7 @@ import com.example.spring.model.dto.Category;
 import com.example.spring.model.dto.Event;
 import com.example.spring.model.dto.Ticket;
 import com.example.spring.model.dto.User;
+import com.example.spring.model.dto.UserAccount;
 
 /** Groups together all operations related to tickets booking. Created by maksym_govorischev. */
 public interface BookingFacade {
@@ -165,4 +166,22 @@ public interface BookingFacade {
    * @return Flag whether anything has been canceled.
    */
   void cancelTicket(long ticketId);
+
+  /**
+   * Fill user Account with a specified amount.
+   *
+   * @param userId User id.
+   * @param amount Integer.
+   * @return user account object.
+   */
+  UserAccount fillUserAccount(long userId, Integer amount);
+
+  /**
+   * Withdraw money from user Account with a specified amount.
+   *
+   * @param userId User id.
+   * @param amount Integer.
+   * @return user account object.
+   */
+  UserAccount withdrawMoneyUserAccount(long userId, Integer amount);
 }

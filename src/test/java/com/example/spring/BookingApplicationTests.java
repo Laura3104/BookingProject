@@ -15,6 +15,7 @@ import com.example.spring.exception.NonExistentUserException;
 import com.example.spring.model.dto.Event;
 import com.example.spring.model.dto.Ticket;
 import com.example.spring.model.dto.User;
+import com.example.spring.model.dto.UserAccount;
 import com.example.spring.service.BookingService;
 
 @SpringBootTest
@@ -67,14 +68,14 @@ class BookingApplicationTests {
 
   @Test
   void deleteNonExistingEventTest() {
-    Long eventId = 10L;
+    long eventId = 10L;
     Assertions.assertThrows(
         NonExistentEventException.class, () -> bookingService.deleteEvent(eventId));
   }
 
   @Test
   void getUserByIdTest() {
-    Long userId = 1L;
+    long userId = 1L;
     User user = bookingService.getUserById(userId);
     Assertions.assertEquals("Juan", user.getName());
   }
@@ -115,7 +116,7 @@ class BookingApplicationTests {
 
   @Test
   void deleteNonExistingUserTest() {
-    Long userId = 10L;
+    long userId = 10L;
     Assertions.assertThrows(
         NonExistentUserException.class, () -> bookingService.deleteUser(userId));
   }
@@ -155,19 +156,35 @@ class BookingApplicationTests {
 
   @Test
   void deleteUserTest() {
-    Long userId = 3L;
+    long userId = 3L;
     Assertions.assertDoesNotThrow(() -> bookingService.deleteUser(userId));
   }
 
   @Test
   void deleteEventTest() {
-    Long eventId = 3L;
+    long eventId = 3L;
     Assertions.assertDoesNotThrow(() -> bookingService.deleteEvent(eventId));
   }
 
   @Test
   void cancelTicketTest() {
-    Long ticketId = 2L;
+    long ticketId = 2L;
     Assertions.assertDoesNotThrow(() -> bookingService.cancelTicket(ticketId));
+  }
+
+  @Test
+  void fillUserAccountTest() {
+    long userId = 1L;
+    int amount = 12;
+    UserAccount userAccount = bookingService.fillUserAccount(userId, amount);
+    Assertions.assertEquals(userId, userAccount.getId());
+  }
+
+  @Test
+  void withdrawUserAccountTest() {
+    long userId = 1L;
+    int amount = 12;
+    UserAccount userAccount = bookingService.withdrawMoneyUserAccount(userId, amount);
+    Assertions.assertEquals(userId, userAccount.getId());
   }
 }

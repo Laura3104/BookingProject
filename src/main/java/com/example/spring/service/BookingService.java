@@ -18,6 +18,7 @@ import com.example.spring.model.dto.Category;
 import com.example.spring.model.dto.Event;
 import com.example.spring.model.dto.Ticket;
 import com.example.spring.model.dto.User;
+import com.example.spring.model.dto.UserAccount;
 
 @Slf4j
 @Service
@@ -28,6 +29,8 @@ public class BookingService implements BookingFacade {
   @Autowired UserService userService;
 
   @Autowired TicketService ticketService;
+
+  @Autowired UserAccountService userAccountService;
 
   private static final ModelMapper mapper = new ModelMapper();
 
@@ -154,5 +157,16 @@ public class BookingService implements BookingFacade {
   @Override
   public void cancelTicket(long ticketId) {
     ticketService.cancelTicket(ticketId);
+  }
+
+  @Override
+  public UserAccount fillUserAccount(long userId, Integer amount) {
+    return mapper.map(userAccountService.fillUserAccount(userId, amount), UserAccount.class);
+  }
+
+  @Override
+  public UserAccount withdrawMoneyUserAccount(long userId, Integer amount) {
+    return mapper.map(
+        userAccountService.withdrawMoneyUserAccount(userId, amount), UserAccount.class);
   }
 }

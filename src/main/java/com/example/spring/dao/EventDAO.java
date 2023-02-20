@@ -33,4 +33,7 @@ public class EventDAO {
 
   @Column(name = "date")
   private Date date;
+
+  @Column(name = "ticket_price")
+  private Integer ticketPrice;
 }
