@@ -2,6 +2,7 @@ package com.example.spring.service;
 
 import java.util.List;
 
+import com.example.spring.dao.UserAccountDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,15 @@ public class TicketService {
 
   @Autowired UserService userService;
 
+  @Autowired UserAccountService userAccountService;
+
   @Autowired TicketRepository ticketRepository;
 
   public TicketDAO bookTicket(long userId, long eventId, int place, Category category) {
     EventDAO eventDAO = eventService.getEventById(eventId);
     UserDAO userDAO = userService.getUserById(userId);
+
+    userAccountService.withdrawMoneyUserAccount(userId, eventDAO.getTicketPrice());
 
     TicketDAO ticketDAO =
         TicketDAO.builder()
